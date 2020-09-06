@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js" charset="utf-8"></script>
+        <script src="./components/BaseChart.js"></script>
+        <script src="./components/BarChart.js"></script>
+        <script src="./components/HBarChart.js"></script>
+        <script src="./components/PieChart.js"></script>
+        <script src="./components/LineChart.js"></script>
+        <script src="./components/BubbleChart.js"></script>
+    </head>
+    <body>
+        <div id="chart" style="width:100%;height:100%">
+        </div>  
+        <script>
+            const genData = (num) => {
+                const data = [];
+                const f1Values = ["2000","2001","2002","2003","2004","2005"];
+                const f2Values = ["company0","company1","company2","company3","company4","company5"];
+                const f3Values = ["test1","test2","test3","test4","test5","test6"];
+                const f4Values = ["info1","info2","info3","info4","info5","info6"];
+                for(let i = 0; i < num; i++) {
+                    data.push({
+                        dim0: f1Values[Math.floor(Math.random() * f1Values.length)],
+                        dim1: f2Values[Math.floor(Math.random() * f2Values.length)],
+                        dim2: f3Values[Math.floor(Math.random() * f3Values.length)],
+                        dim3: f4Values[Math.floor(Math.random() * f4Values.length)],
+                        meas0: Math.random() * 34,
+                        meas1: Math.random() * 23
+                    });
+                }
+                return data;
+            };
+
+            const oBarChart = new HBarChart({id: "chart"});
+            oBarChart.draw(genData(10), {
+                dim: ["dim0", "dim1", "dim2", "dim3"],
+                meas: ["meas0","meas1"]
+            });
+
+            // setInterval(() => {
+            //     oBarChart.draw(genData(10));
+            // }, 300);
+        </script>  
+    </body>   
+</html> 
